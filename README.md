@@ -13,6 +13,8 @@ Install opencv on your system, e.g. for MacOS
 
 `brew install opencv`
 
+### Usage
+
 Run the python script with the video you want to analyze
 
 `python3 fluidity.py RPReplay_Final1594317061.mp4`
