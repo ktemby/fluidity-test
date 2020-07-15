@@ -10,7 +10,7 @@
 # Output: a side-by-side video showing framerate
 #
 # Do simple frame subtraction 
-# 
+
 # visualize framerate
 # visualize framerate between last different frame
 
@@ -72,7 +72,7 @@ class FluidityAnalyzer:
         t_plus = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY)
 
         # Loop through all frames in video
-            while f < maxFrame:
+            while f < self.maxFrame:
                 
                 # Read next image
                 prev = img
@@ -102,8 +102,13 @@ class FluidityAnalyzer:
                 cv2.putText(prev, format(f"Static Frames: {framesSinceChange}"), (50,50),dfont,2,fontColor)
                 cv2.putText(prev, format(f"Fluidity: {currentFluidity} fps"),(50,150),dfont,2,fontColor)
                 cv2.drawContours(prev, contours,-1,(0,0,255),1)
-                video.write(prev)
+                self.video.write(prev)
 
-
-    video.release()
-cam.release()
+        self.video.release()
+        self.cam.release()
+        return outputFile
+        
+if __name__ == '__main__':
+    fluidity = FluidityAnalyzer(sys.argv[1], sys.argv[2])
+    success = fluidity.analyze()
+    print(f"Analysis completed: {success}")
