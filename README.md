@@ -15,14 +15,17 @@ These are overlaid to the original video so you can see ‘animations of interes
 ### Setup
 Install opencv on your system, e.g. for MacOS
 
-`brew install opencv`
+    brew install opencv
 
 ### Usage
 
 Run the python script with the video you want to analyze
 
-`python3 fluidity.py RPReplay_Final1594317061.mp4`
+    python3 fluidity.py RPReplay_Final1594317061.mp4
 
+Alternatively use the shell script for a compressed version
+
+    ./analyzer.sh myScreenRecording.mp4 AnalysisOutput.mp4
 
 ### References
 Lambda/AWS deployment greatly assisted by this:
