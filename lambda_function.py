@@ -7,6 +7,10 @@ def write_to_file(save_path, data):
     with open(save_path, "wb") as f:
       f.write(base64.b64decode(data))
    
+def process(inFile, outFile):
+    analyzer = fluidityAnalyzer.FluidityAnalyzer(inFile, outFile)
+    analyzer.analyze()
+   
 def lambda_handler(event, context):
     inFile = "/tmp/videoFile.mp4"
     outFile = "/tmp/outputFile.mp4"
@@ -14,8 +18,7 @@ def lambda_handler(event, context):
     # Write request body data into file
     write_to_file(inFile, event["body"])
     
-    analyzer = fluidityAnalyzer.FluidityAnalyzer(inFile, outFile)
-    analyzer.analyze()
+    process(inFile, outFile)
     
     # Convert videoOutput to base64
     with open(outFile, "rb") as vid:
